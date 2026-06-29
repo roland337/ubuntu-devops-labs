@@ -1,0 +1,29 @@
+--------------------------------------------------------------------------------
+[LEVEL 2: ENTERPRISE FIREWALL PROTECTION & NETFILTER MANAGEMENT]
+--------------------------------------------------------------------------------
+* Deskripsi: Implementasi lapisan keamanan perimeter menggunakan UFW (Uncomplicated 
+  Firewall) berbasis Netfilter Linux untuk mengunci mati seluruh port masuk.
+
+* CLI Aturan Prosedur Penguncian Gerbang Server:
+  1. Inspeksi status firewall perimeter saat ini:
+     $ sudo ufw status verbose
+     
+  2. Aturan Default (Tolak semua paket masuk, izinkan semua paket keluar):
+     $ sudo ufw default deny incoming
+     $ sudo ufw default allow outgoing
+     
+  3. Pembukaan akses port aman remote SSH Hardening:
+     $ sudo ufw allow 2222/tcp
+     
+  4. Pembukaan akses port standar web server (HTTP & HTTPS):
+     $ sudo ufw allow 80/tcp
+     $ sudo ufw allow 443/tcp
+     
+  5. Pembukaan akses kustom untuk pengujian web port 8085:
+     $ sudo ufw allow 8085/tcp
+     
+  6. Aktivasi berkala mesin UFW secara permanen (Persist setelah reboot):
+     $ sudo ufw enable
+     
+  7. Reload ulang tabel aturan UFW:
+     $ sudo ufw reload

@@ -1,0 +1,64 @@
+--------------------------------------------------------------------------------
+[LEVEL 4: ORKESTRASI MULTI-CONTAINER & PERSISTENSI DATA STORAGE]
+--------------------------------------------------------------------------------
+* Deskripsi: Implementasi Docker Compose untuk mengelola arsitektur kompleks 
+  banyak kontainer (LAMP Stack) yang saling terhubung dalam satu jaringan 
+  terisolasi, dilengkapi manajemen volume untuk mencegah kehilangan data.
+
+* Langkah Pasca-Instalasi (Eksekusi Sekali Tanpa Sudo):
+  $ sudo groupadd docker
+  $ sudo usermod -aG docker $USER
+  $ newgrp docker
+
+* Cetak Biru File Orkestrasi Lengkap (docker-compose.yml):
+  - Lokasi Berkas: /var/www/html/lamp-stack/docker-compose.yml
+  ==============================================================================
+  version: '3.8'
+
+  services:
+    # Service 1: Database Relasional (MySQL)
+    db-server:
+      image: mysql:8.0
+      container_name: mysql-database
+      restart: always
+      environment:
+        MYSQL_ROOT_PASSWORD: super_secret_pass
+        MYSQL_DATABASE: roland_db
+      ports:
+        - "3307:3306" # Port 3307 Host dioper ke 3306 kontainer (Menghindari konflik MariaDB)
+      volumes:
+        - mysql_data:/var/lib/mysql
+      networks:
+        - roland-network
+
+    # Service 2: Web Server & PHP Runtime (LAMP Stack Environment)
+    web-app:
+      image: php:8.1-apache
+      container_name: apache-php-app
+      restart: always
+      ports:
+        - "8081:80" # Diakses lewat port kustom 8081
+      volumes:
+        - ./src:/var/www/html
+      depends_on:
+        - db-server
+      networks:
+        - roland-network
+
+  volumes:
+    mysql_data: # Driver volume volume lokal untuk keamanan data database
+
+  networks:
+    roland-network:
+      driver: bridge
+  ==============================================================================
+
+* CLI Operasional Docker Compose:
+  1. Mengunduh image dan menyalakan seluruh arsitektur di background (Detached):
+     $ docker compose up -d
+     
+  2. Memeriksa log aktivitas kontainer secara real-time:
+     $ docker compose logs -f
+     
+  3. Membongkar dan menghapus seluruh kontainer beserta jaringan grup secara bersih:
+     $ docker compose down

@@ -1,0 +1,8 @@
+# Mengabaikan file log sistem
+*.log
+
+# Mengabaikan data database MySQL lokal agar tidak mengotori GitHub
+Level-4-Docker-Compose/lamp-stack/mysql_data/
+
+# Mengabaikan file konfigurasi yang mengandung password asli
+.env

@@ -1,0 +1,24 @@
+--------------------------------------------------------------------------------
+[LEVEL 0: VIRTUALIZATION FOUNDATION & BAREMETAL OS SETUP]
+--------------------------------------------------------------------------------
+* Deskripsi: Tahap inisiasi infrastruktur lokal menggunakan Hypervisor Oracle 
+  VirtualBox dan instalasi mandiri OS Ubuntu Server 22.04 LTS (Tanpa GUI).
+
+* Spesifikasi Lingkungan Laboratorium (Hardware Allocation):
+  - vCPU Allocation   : 1 atau 2 Core CPU Physical
+  - Memory (RAM)      : 2048 MB (2 GB)
+  - Storage           : 25 GB Virtual Disk Image (VDI) - Dynamic Allocation
+  - Network Adapter 1 : NAT (Digunakan khusus untuk instalasi awal & internet)
+
+* CLI Manajemen & Audit System Core:
+  1. Audit komprehensif versi kernel dan arsitektur mesin:
+     $ uname -a
+     
+  2. Memeriksa detail spesifik rilis distro Linux:
+     $ lsb_release -a
+     
+  3. Monitoring kapasitas penyimpanan media cakram (Disk Usage):
+     $ df -h
+     
+  4. Monitoring alokasi dan sisa RAM sistem (Megabytes):
+     $ free -m
