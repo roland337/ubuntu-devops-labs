@@ -1,4 +1,4 @@
-# 🚀 Ubuntu Server to Cloud Infrastructure: Level 0 to Level 5 Labs
+# 🚀 Ubuntu Server to Cloud Infrastructure: Level 0 to Level 6 Labs
 
 Selamat datang di repositori dokumentasi laboratorium infrastruktur saya! Repositori ini berisi seluruh catatan konfigurasi, arsitektur jaringan, cetak biru Docker, dan perintah CLI sakral yang saya pelajari dan praktikkan secara mandiri dari dasar arsitektur server hingga implementasi jaringan tingkat lanjut.
 
