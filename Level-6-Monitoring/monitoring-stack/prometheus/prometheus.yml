@@ -1,0 +1,11 @@
+global:
+  scrape_interval: 15s # Mengambil data metrik setiap 15 detik sekali
+
+scrape_configs:
+  - job_name: 'prometheus'
+    static_configs:
+      - targets: ['localhost:9090']
+
+  - job_name: 'ubuntu-server'
+    static_configs:
+      - targets: ['node-exporter:9100']
